@@ -36,76 +36,76 @@ public class yahtzee
 				}
 				turn++;
 			}
-		}
-		//start scoring
-		//hand need to be sorted to check for straights
+			//start scoring
+			//hand need to be sorted to check for straights
 
-		sortArray(hand, DICE_IN_PLAY);	
-		System.out.print("Here is your sorted hand : ");
-		for (int dieNumber = 0; dieNumber < DICE_IN_PLAY; dieNumber++)
-        {
-            System.out.print(hand[dieNumber] + " ");
-        }
-        System.out.println();
-		//upper scorecard
-		for (int dieValue = 1; dieValue <=6; dieValue++)
-		{
-			int currentCount = 0;
-			for (int diePosition = 0; diePosition < 5; diePosition++)
+			sortArray(hand, DICE_IN_PLAY);	
+			System.out.print("Here is your sorted hand : ");
+			for (int dieNumber = 0; dieNumber < DICE_IN_PLAY; dieNumber++)
 			{
-				if (hand[diePosition] == dieValue)
-					currentCount++;
+				System.out.print(hand[dieNumber] + " ");
 			}
-			System.out.println( "Score " + dieValue * currentCount + " on the " +
-			+ dieValue + " line");
+			System.out.println();
+			//upper scorecard
+			for (int dieValue = 1; dieValue <=6; dieValue++)
+			{
+				int currentCount = 0;
+				for (int diePosition = 0; diePosition < 5; diePosition++)
+				{
+					if (hand[diePosition] == dieValue)
+						currentCount++;
+				}
+				System.out.println( "Score " + dieValue * currentCount + " on the " +
+				+ dieValue + " line");
+			}
+				//lower scorecard
+			if (maxOfAKindFound(hand) >= 3)
+			{
+				System.out.println("Score "  + totalAllDice(hand) + " on the " +
+				"3 of a Kind line");
+			}
+			else System.out.println("Score 0 on the 3 of a Kind line");
+
+			if (maxOfAKindFound(hand) >= 4)
+			{
+				System.out.println("Score " + totalAllDice(hand) + " on the" +
+				 "4 of a Kind line");
+			}
+			else System.out.println("Score 0 on the 4 of a Kind line");
+
+			if (fullHouseFound(hand))
+				System.out.println("Score 25 on the Full House line");
+			else
+				System.out.println("Score 0 on the Full House line");
+
+			if (maxStraightFound(hand) >= 4)
+				System.out.println("Score 30 /on the Small Straight line");
+			else
+				System.out.println("Score 0 on the Small Straight line");
+
+			if (maxStraightFound(hand) >= 5)
+				System.out.println("Score 40 on the Large Straight line");
+			else
+				System.out.println("Score 0 on the Large Straight line");
+
+			if (maxOfAKindFound(hand) >= 5)
+				System.out.println("Score 50 on the Yahtzee line");
+			else
+				System.out.println("Score 0 on the Yahtzee line");
+
+			System.out.println("Score " + totalAllDice(hand) + " on the ");
+			System.out.println("Chance line");
+			System.out.println("\nEnter 'y' to play again ");
+			String temp = keyboard.nextLine();
+			playAgain = temp.charAt(0);
 		}
-			//lower scorecard
-		if (maxOfAKindFound(hand) >= 3)
-		{
-			System.out.println("Score "  + totalAllDice(hand) + " on the " +
-			"3 of a Kind line");
-		}
-		else System.out.println("Score 0 on the 3 of a Kind line");
-
-		if (maxOfAKindFound(hand) >= 4)
-		{
-			System.out.println("Score " + totalAllDice(hand) + " on the" +
-			 "4 of a Kind line");
-		}
-		else System.out.println("Score 0 on the 4 of a Kind line");
-
-		if (fullHouseFound(hand))
-			System.out.println("Score 25 on the Full House line");
-		else
-			System.out.println("Score 0 on the Full House line");
-
-		if (maxStraightFound(hand) >= 4)
-			System.out.println("Score 30 /on the Small Straight line");
-		else
-			System.out.println("Score 0 on the Small Straight line");
-
-		if (maxStraightFound(hand) >= 5)
-			System.out.println("Score 40 on the Large Straight line");
-		else
-			System.out.println("Score 0 on the Large Straight line");
-
-		if (maxOfAKindFound(hand) >= 5)
-			System.out.println("Score 50 on the Yahtzee line");
-		else
-			System.out.println("Score 0 on the Yahtzee line");
-
-		System.out.println("Score " + totalAllDice(hand) + " on the ");
-		System.out.println("Chance line");
-		System.out.println("\nEnter 'y' to play again ");
-		String temp = keyboard.nextLine();
-		playAgain = temp.charAt(0);
 	}
 	
 	public static int rollDie()
 	//this function simulates the rolling of a single die
 	{
 		Random rand = new Random();
-		int roll = Random.nextInt();
+		int roll = rand.nextInt(6);
 		return roll;
 	}
 
