@@ -11,7 +11,11 @@ public class hangman {
     {
         char currentLetter = 'a';
         String unfinishedWord = ""; //string containing blanks and letter correctly guessed
-        boolean keepLooping = true;
+        boolean keepLooping = true; //loops after each game
+        boolean notDone = true; // boolean that keeps track to see if the game is still in progress
+        boolean isInWord = false; //boolean that checks to see if players guess is correct
+        
+        //main loop
         while(keepLooping){
             String word = "";
             int choice = getChoice();
@@ -25,32 +29,40 @@ public class hangman {
             
             unfinishedWord = getUnfinishedWord(word);
             
-            boolean notDone = true; //switch to loop playing
+            //in game loop
             while(notDone){
                 currentLetter = getLetter();
-                unfinishedWord = isLetterInString(word, unfinishedWord, currentLetter);
+                if(isLetterInString(word, currentLetter)){
+                    unfinishedWord = addToUnfinishedWord(word, unfinishedWord, currentLetter);
+                }
                 showOutput(unfinishedWord);
             }
             showOutput(word);
         }
     }
     
-    //checks to see if the letter guessed is in the word
-    //if true then it adds it to the unfinished word
-    public static String isLetterInString(String s, String u, char c){
-        int x = s.indexOf(c);
+    public static String addToUnfinishedWord(String s, String u, char c){
         StringBuilder word = new StringBuilder(u);
-        
-        if(x > -1){
-             for(int i = 0; i < s.length(); i++){
-                 if(s.charAt(i) == c){
-                     word.setCharAt(i, c);
-                 }
-             }
-        }else{
-            JOptionPane.showMessageDialog(null, "bad choice");
+        for(int i = 0; i < s.length(); i++){
+            if(s.charAt(i) == c){
+                word.setCharAt(i, c);
+            }
         }
         return word.toString();
+    }
+    
+    //checks to see if the letter guessed is in the word
+    public static boolean isLetterInString(String s, char c){
+        int x = s.indexOf(c);
+        
+        
+        if(x > -1){
+            return true;
+             
+        }else{
+            JOptionPane.showMessageDialog(null, "bad choice");
+            return false;
+        }
     }
     
     public static String getUnfinishedWord(String s){
