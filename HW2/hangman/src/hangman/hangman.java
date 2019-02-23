@@ -14,9 +14,11 @@ public class hangman {
         boolean keepLooping = true; //loops after each game
         boolean notDone = true; // boolean that keeps track to see if the game is still in progress
         boolean isInWord = false; //boolean that checks to see if players guess is correct
+        int timesWrong = 0;
         
         //main loop
         while(keepLooping){
+            timesWrong = 0;
             String word = "";
             int choice = getChoice();
             if(choice == 2){
@@ -34,6 +36,34 @@ public class hangman {
                 currentLetter = getLetter();
                 if(isLetterInString(word, currentLetter)){
                     unfinishedWord = addToUnfinishedWord(word, unfinishedWord, currentLetter);
+                }else{
+                    timesWrong++;
+                    switch(timesWrong){
+                        case 1:
+                            JOptionPane.showMessageDialog(null, "building the head...");
+                            break;
+                        case 2:
+                            JOptionPane.showMessageDialog(null, "building the neck...");
+                            break;
+                        case 3:
+                            JOptionPane.showMessageDialog(null, "building the left hand...");
+                            break;
+                        case 4:
+                            JOptionPane.showMessageDialog(null, "builing the right hand...");
+                            break;
+                        case 5:
+                            JOptionPane.showMessageDialog(null, "building the body...");
+                            break;
+                        case 6:
+                            JOptionPane.showMessageDialog(null, "building the left leg...");
+                            break;
+                        case 7:
+                            JOptionPane.showMessageDialog(null, "building the right leg...");
+                            JOptionPane.showMessageDialog(null, "You lost");
+                            notDone = false;
+                    }
+                            
+                    
                 }
                 showOutput(unfinishedWord);
             }
@@ -41,6 +71,7 @@ public class hangman {
         }
     }
     
+    //adds the guessed letter to the unfinished word
     public static String addToUnfinishedWord(String s, String u, char c){
         StringBuilder word = new StringBuilder(u);
         for(int i = 0; i < s.length(); i++){
@@ -100,7 +131,7 @@ public class hangman {
    
    public static String getRandomWord(){
        String[] listOfWords =  {"hello", "guess", "computer", "library", "information", "desk", "mouse",
-       "keyboard", "monitor", "table", "chair"};
+       "keyboard", "monitor", "table", "chair", "syzygy"};
        
        int lengthA = listOfWords.length;
 
