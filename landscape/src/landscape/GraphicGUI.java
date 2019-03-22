@@ -23,11 +23,9 @@ public class GraphicGUI extends JFrame {
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
         Highrise1 hr1 = new Highrise1(); 
-        Highrise2 hr2 = new Highrise2();
         frame.add(hr1);
-        frame.add(hr2);
         frame.getContentPane().setBackground(Color.BLUE);
-        frame.setSize( 300, 300 ); // set frame size
+        frame.setSize( 500, 500 ); // set frame size
         frame.setVisible( true ); // display frame
     }
 }
