@@ -22,12 +22,10 @@ class Highrise1 extends JPanel implements ActionListener
    private int delay = 10;
    protected Timer timer; 
     
-   public int rectX = 60;   //x for first building
-   public int rectY = 100;  //y for first building
-   public int rectX2 = 360;
-   public int rectY2 = 80;
-   public int rectX3 = 190;
-   public int rectY3 = 70;
+   public static int rectX = 60;   //x for first building
+   public static int rectY = 100;  //y for first building
+   
+   private boolean showBanner = false;
    
    public int houseX1 = 50;
    public int houseY1 = 398;
@@ -81,6 +79,9 @@ class Highrise1 extends JPanel implements ActionListener
             green[i] = ran.nextInt(255);
             blue[i] = ran.nextInt(255);
         }
+        
+        addMouseListener(new MyMouseListener());
+        addMouseMotionListener(new MyMouseMotionListener());
    }
 
    public void actionPerformed(ActionEvent e)
@@ -92,6 +93,12 @@ class Highrise1 extends JPanel implements ActionListener
    // draw rectangles and arcs
    public void paintComponent( Graphics g )
    {
+       
+        int rectX2 = rectX + 300;
+        int rectY2 = rectY - 20;
+        int rectX3 = rectX + 130;
+        int rectY3 = rectY - 30;
+       
         super.paintComponent( g ); // call superclass's paintComponent
         
         g.setColor(new Color(10, 26, 75)); //background
@@ -156,7 +163,7 @@ class Highrise1 extends JPanel implements ActionListener
         for(int i = 0; i < 6; i++){
             int treeX = treeX1 + i*30;
             g.setColor(new Color(112, 69, 12));
-            g.fillRect(treeX, treeY1, 10, 50);
+            g.fillRect(treeX, treeY1, 10, 100);
             g.setColor(new Color(4, 98, 4));
             g.fillOval(treeX - 10, treeY1 - 20, 30, 50);
         }
@@ -170,13 +177,68 @@ class Highrise1 extends JPanel implements ActionListener
             g.setColor(Color.BLACK);
             g.fillOval(planeX1 + 3 + i*10, planeY1+3, 9, 9);
         }
+        if(showBanner){
+            g.setColor(Color.red);
+            g.fillRect(planeX1 - 60, planeY1 - 5, 60, 20);
+            g.setColor(Color.white);
+            g.drawString("welcome", planeX1 - 56, planeY1 + 6);
+        }
         
         g.setColor(Color.black);  //does the ground
         g.fillRect(0, 450, 500, 50);
         
         
    }
-}
+   
+   private class MyMouseListener implements MouseListener
+    {
+        public void mousePressed(MouseEvent e)
+        {
+            showBanner = true;
+        }
+
+        public void mouseClicked(MouseEvent e) {
+            //System.out.println("test");
+        }
+
+        public void mouseReleased(MouseEvent e) {
+            showBanner = false;
+        }
+
+        public void mouseEntered(MouseEvent e) {
+            System.out.println("test");
+        }
+
+        public void mouseExited(MouseEvent e) {
+            System.out.println("test");
+        }
+        
+        
+    }
+   
+   private class MyMouseMotionListener implements MouseMotionListener
+   {
+
+        @Override
+        public void mouseDragged(MouseEvent e) {
+        }
+
+        public void mouseMoved(MouseEvent e){
+            int x = e.getX();
+            int y = e.getY();
+            
+            rectX = 60 + (x - 250)/12;
+            rectY = 100 + (y - 250)/20;
+            
+            houseX1 = 50 + (x - 250)/7;
+            houseY1 = 398 + (y - 250)/16;
+   
+            treeX1 = 300 + (x - 250)/4;
+            treeY1 = 400 + (y - 250)/12;
+        }
+   }
+ }
+
 
 
 

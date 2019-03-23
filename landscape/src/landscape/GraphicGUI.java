@@ -27,6 +27,9 @@ public class GraphicGUI extends JFrame {
         frame.getContentPane().setBackground(Color.BLUE);
         frame.setSize( 500, 500 ); // set frame size
         frame.setVisible( true ); // display frame
+        
+        
     }
+    
 }
-
+ 
