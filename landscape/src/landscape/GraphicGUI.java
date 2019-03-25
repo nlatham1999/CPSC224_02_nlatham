@@ -22,7 +22,7 @@ public class GraphicGUI extends JFrame {
         JFrame frame = new JFrame( "Bouncing Ball" );
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
-        Highrise1 hr1 = new Highrise1(); 
+        Highrise1 hr1 = new Highrise1(); //creates graphics 
         frame.add(hr1);
         frame.getContentPane().setBackground(Color.BLUE);
         frame.setSize( 500, 500 ); // set frame size

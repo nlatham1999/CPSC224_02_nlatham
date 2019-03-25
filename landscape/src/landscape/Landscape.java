@@ -14,7 +14,7 @@ public class Landscape
    // execute application
    public static void main( String args[] )
    {
-      new GraphicGUI();
+      new GraphicGUI();  //does new graphics
    } // end main
 }
 

@@ -49,30 +49,8 @@ class Highrise1 extends JPanel implements ActionListener
         timer = new Timer(delay, this);
         timer.start();		// start the time
         
-        for(int i = 0; i < 517; i++){//set which windows light up on highrise1
-            Random ran = new Random();
-            int flip = ran.nextInt(3);
-            if(flip == 1)
-                b1[i] = 0;
-            else
-                b1[i] = 1;
-        }
-        for(int i = 0; i < 470; i++){//set which windows light up on highrise2
-            Random ran = new Random();
-            int flip = ran.nextInt(3);
-            if(flip == 1)
-                b2[i] = 0;
-            else
-                b2[i] = 1;
-        }
-        for(int i = 0; i < 413; i++){ //set which windows light up on highrise3
-            Random ran = new Random();
-            int flip = ran.nextInt(3);
-            if(flip == 1)
-                b3[i] = 0;
-            else
-                b3[i] = 1;
-        }
+        doWindows();
+        
         for(int i = 0; i < 5; i++){  //set the colors for the houses
             Random ran = new Random();
             red[i] = ran.nextInt(255);
@@ -198,7 +176,7 @@ class Highrise1 extends JPanel implements ActionListener
         }
 
         public void mouseClicked(MouseEvent e) {
-            //System.out.println("test");
+            doWindows();
         }
 
         public void mouseReleased(MouseEvent e) {
@@ -206,11 +184,11 @@ class Highrise1 extends JPanel implements ActionListener
         }
 
         public void mouseEntered(MouseEvent e) {
-            System.out.println("test");
+            //
         }
 
         public void mouseExited(MouseEvent e) {
-            System.out.println("test");
+            //
         }
         
         
@@ -235,6 +213,33 @@ class Highrise1 extends JPanel implements ActionListener
    
             treeX1 = 300 + (x - 250)/4;
             treeY1 = 400 + (y - 250)/12;
+        }
+   }
+   
+   private void doWindows(){
+       for(int i = 0; i < 517; i++){//set which windows light up on highrise1
+            Random ran = new Random();
+            int flip = ran.nextInt(3);
+            if(flip == 1)
+                b1[i] = 0;
+            else
+                b1[i] = 1;
+        }
+        for(int i = 0; i < 470; i++){//set which windows light up on highrise2
+            Random ran = new Random();
+            int flip = ran.nextInt(3);
+            if(flip == 1)
+                b2[i] = 0;
+            else
+                b2[i] = 1;
+        }
+        for(int i = 0; i < 413; i++){ //set which windows light up on highrise3
+            Random ran = new Random();
+            int flip = ran.nextInt(3);
+            if(flip == 1)
+                b3[i] = 0;
+            else
+                b3[i] = 1;
         }
    }
  }
